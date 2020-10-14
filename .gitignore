@@ -3,3 +3,4 @@ git add .gitignore
 node_modules/
 Test/
 db_configs.json
+db_configs.properties

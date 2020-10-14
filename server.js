@@ -13,8 +13,9 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(compression())
 
-const mlab = require('./db_configs.json')
-const uri = `mongodb://${mlab.user}:${mlab.password}@${mlab.host}/${mlab.database}`
+// const mlab = require('./db_configs.json')
+// const uri = `mongodb://${mlab.user}:${mlab.password}@${mlab.host}/${mlab.database}`
+const uri = `mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_NAME}`
 
 app.get('/', (req, res) => {
     res.sendFile(`${__dirname}/ui/index.html`)
