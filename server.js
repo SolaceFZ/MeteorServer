@@ -4,11 +4,14 @@ const app = express()
 const http = require('http').Server(app)
 const io = require('socket.io')(http)
 const mongoose = require('mongoose')
+const compression = require('compression')
+
 const Message = require('./models/Message')
 
 app.use(express.static(`${__dirname}/ui`))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(compression())
 
 const mlab = require('./db_configs.json')
 const uri = `mongodb://${mlab.user}:${mlab.password}@${mlab.host}/${mlab.database}`
@@ -49,7 +52,7 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true }, (erro
     console.log('mongo connected', error)
 })
 
-const port = 8000;
+const port = process.env.port || 8000;
 const server = http.listen(port, () => {
     console.log(`App is live at port ${port}`)
 })
