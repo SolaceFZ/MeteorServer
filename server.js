@@ -52,7 +52,7 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true }, (erro
     console.log('mongo connected', error)
 })
 
-const port = process.env.port || 8000;
+const port = process.env.PORT || 8000;
 const server = http.listen(port, () => {
     console.log(`App is live at port ${port}`)
 })
