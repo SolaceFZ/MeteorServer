@@ -16,6 +16,10 @@ app.use(compression())
 const mlab = require('./db_configs.json')
 const uri = `mongodb://${mlab.user}:${mlab.password}@${mlab.host}/${mlab.database}`
 
+app.get('/', (req, res) => {
+    res.sendFile(`${__dirname}/ui/index.html`)
+})
+
 app.get('/messages', (req, res) => {
     Message.find({}, (err, messages) => {
         res.json(messages)
